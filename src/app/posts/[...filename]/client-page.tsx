@@ -2,6 +2,12 @@
 import { tinaField, useTina } from "tinacms/dist/react";
 import type { PostQuery } from "../../../../tina/__generated__/types";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
+import { Codeblock } from "@/components/code-block";
+import mermaid from "mermaid";
+
+mermaid.initialize({
+  startOnLoad: true,
+})
 
 interface ClientPageProps {
   query: string;
@@ -10,6 +16,15 @@ interface ClientPageProps {
   };
   data: PostQuery;
 }
+
+const components = {
+  code_block: (props: any) => {
+    return <Codeblock language={props.lang}>{props.value}</Codeblock>;
+  },
+  mermaid: (props: any) => {
+    return <pre className="mermaid">{props.value}</pre>;
+  },
+};
 
 export default function Post(props: ClientPageProps) {
   // data passes though in production mode and data is updated to the sidebar data in edit-mode
@@ -25,7 +40,7 @@ export default function Post(props: ClientPageProps) {
         {data.post.title}
       </h1>
       <div data-tina-field={tinaField(data.post, "body")}>
-        <TinaMarkdown content={content} />
+        <TinaMarkdown content={content} components={components} />
       </div>
     </>
   );

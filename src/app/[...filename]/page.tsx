@@ -1,5 +1,6 @@
 import ClientPage from "./client-page";
 import client from "../../../tina/__generated__/client";
+import { PageProps } from "../../../.next/types/app/[...filename]/page";
 
 export async function generateStaticParams() {
   const pages = await client.queries.pageConnection();
@@ -10,9 +11,11 @@ export async function generateStaticParams() {
   return paths || [];
 }
 
-export default async function Page(page: any) {
+export default async function Page({ params }: PageProps) {
+
+  const {filename} = await params;
   const data = await client.queries.page({
-    relativePath: `${await page.params.filename}.mdx`,
+    relativePath: `${filename}.mdx`,
   });
 
   return <ClientPage {...data} />;
