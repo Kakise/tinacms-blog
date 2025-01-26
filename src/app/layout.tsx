@@ -4,6 +4,7 @@ import './globals.css'
 import Nav from '@/components/nav'
 import { ViewTransitions } from 'next-view-transitions'
 import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const montserrat = Montserrat({ subsets: ['latin'] })
 
@@ -20,6 +21,7 @@ export default function RootLayout({
     <ViewTransitions>
       <html lang="en">
         <Analytics />
+        <SpeedInsights />
         <body className={montserrat.className}>
             <Nav />
             <div className="text-text dark:text-darkText mx-auto w-[750px] max-w-full px-5 pb-10 pt-28">
