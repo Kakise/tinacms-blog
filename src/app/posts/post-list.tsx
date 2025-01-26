@@ -19,7 +19,6 @@ export default function PostList(props: any) {
               <FaCalendar />
               {format(new Date(post.node.date), "MMMM dd, yyyy")}
             </p>
-            <br />
             <p>{truncate(post.node.body.children[0].children[0].text, 255)}</p>
           </div>
         ))}
