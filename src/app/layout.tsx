@@ -4,6 +4,7 @@ import './globals.css'
 import Nav from '@/components/nav'
 import { ViewTransitions } from 'next-view-transitions'
 import { ThemeProvider } from '@/components/theme-provider'
+import { Analytics } from "@vercel/analytics/react"
 
 const montserrat = Montserrat({ subsets: ['latin'] })
 
@@ -19,6 +20,7 @@ export default function RootLayout({
   return (
     <ViewTransitions>
       <html lang="en">
+        <Analytics />
         <body className={montserrat.className}>
           <ThemeProvider attribute="class" disableTransitionOnChange>
             <Nav />
