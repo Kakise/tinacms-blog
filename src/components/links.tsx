@@ -2,7 +2,6 @@ import {
   IconType,
   SiGithub,
   SiGmail,
-  SiLinkedin,
   SiMedium,
 } from '@icons-pack/react-simple-icons'
 
@@ -17,7 +16,7 @@ export default function Links() {
       href: 'https://github.com/samitaaissat',
     },
     {
-      icon: SiLinkedin,
+      icon: SiMedium,
       href: 'https://www.linkedin.com/in/sami-taaissat/',
     },
   ]
