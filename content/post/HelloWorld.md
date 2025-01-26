@@ -15,9 +15,9 @@ flowchart TD
     --> id4(Learn about mermaid diagrams - mermaid.js.org)
 ```
 
-| dz | zd |
-| -- | -- |
-| dz | dz |
+| a | b |
+| - | - |
+| c | d |
 
 ```javascript
 export default function RootLayout({

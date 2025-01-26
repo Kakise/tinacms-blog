@@ -21,6 +21,7 @@ const config: Config = {
         ring: 'var(--ring)',
         ringOffset: 'var(--ring-offset)',
 
+        muted: '#f0f0f0',
         secondaryBlack: '#212121',
       },
       borderRadius: {
