@@ -112,36 +112,38 @@ const TableCaption = React.forwardRef<
 TableCaption.displayName = 'TableCaption'
 
 const TinaTable = ({ children }: { children: React.ReactNode }) => {
-  const childLen = children.props.children.length
-  console.log(
-    children.props.children[0].props.children[0].props.content[0].children[0]
-      .text,
-  )
+  const childLen = React.isValidElement(children)
+    ? children.props.children.length
+    : 0
   return (
     <Table>
       <TableHeader>
         <TableRow>
-          {children.props.children[0].props.children.map(
-            (child: any, index: number) => (
+          {React.isValidElement(children) &&
+            React.isValidElement(children.props.children[0]) &&
+            (
+              children.props.children[0] as React.ReactElement
+            ).props.children.map((child: any, index: number) => (
               <TableHead key={`header-${index}`}>
                 {child.props.content[0].children[0].text}
               </TableHead>
-            ),
-          )}
+            ))}
         </TableRow>
       </TableHeader>
       <TableBody>
-        {children.props.children
-          .slice(1, childLen)
-          .map((row: any, rowIndex: number) => (
-            <TableRow key={`row-${rowIndex}`}>
-              {row.props.children.map((cell: any, cellIndex: number) => (
-                <TableCell key={`cell-${rowIndex}-${cellIndex}`}>
-                  {cell.props.content[0].children[0].text}
-                </TableCell>
-              ))}
-            </TableRow>
-          ))}
+        {React.isValidElement(children) &&
+          React.isValidElement(children.props.children[0]) &&
+          children.props.children
+            .slice(1, childLen)
+            .map((row: any, rowIndex: number) => (
+              <TableRow key={`row-${rowIndex}`}>
+                {row.props.children.map((cell: any, cellIndex: number) => (
+                  <TableCell key={`cell-${rowIndex}-${cellIndex}`}>
+                    {cell.props.content[0].children[0].text}
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))}
       </TableBody>
     </Table>
   )
