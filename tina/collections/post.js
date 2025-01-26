@@ -12,6 +12,11 @@ export default {
       name: "title",
     },
     {
+      type: "datetime",
+      label: "Date",
+      name: "date",
+    },
+    {
       type: "rich-text",
       label: "Blog Post Body",
       name: "body",
