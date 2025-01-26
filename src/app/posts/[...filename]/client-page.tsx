@@ -3,11 +3,7 @@ import { tinaField, useTina } from "tinacms/dist/react";
 import type { PostQuery } from "../../../../tina/__generated__/types";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { Codeblock } from "@/components/code-block";
-import mermaid from "mermaid";
-
-mermaid.initialize({
-  startOnLoad: true,
-})
+import {Mermaid} from "@/components/mermaid";
 
 interface ClientPageProps {
   query: string;
@@ -22,7 +18,7 @@ const components = {
     return <Codeblock language={props.lang}>{props.value}</Codeblock>;
   },
   mermaid: (props: any) => {
-    return <pre className="mermaid">{props.value}</pre>;
+    return <Mermaid>{props.value}</Mermaid>;
   },
 };
 
