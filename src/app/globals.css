@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --main: #a388ee;
+  --overlay: rgba(0, 0, 0, 0.8);
+  /* background color overlay for alert dialogs, modals, etc. */
+
+  --bg: #e3dff2;
+  --bw: #fff;
+  /* white and secondary black e.g. utility class variant would be: bg-[#fff] dark:bg-[#212121] */
+  --blank: #000;
+  /* blank black and white */
+  --border: #000;
+  --text: #000;
+  --mtext: #000;
+  /* text that is placed on background with main color e.g. text color of default button */
+  --ring: #000;
+  --ring-offset: #fff;
+
+  --border-radius: 5px;
+  --box-shadow-x: 4px;
+  --box-shadow-y: 4px;
+  --reverse-box-shadow-x: -4px;
+  --reverse-box-shadow-y: -4px;
+  --base-font-weight: 500;
+  --heading-font-weight: 700;
+
+  --shadow: var(--box-shadow-x) var(--box-shadow-y) 0px 0px var(--border);
+}
+
+.dark {
+  --bg: #272733;
+  --bw: #212121;
+  --blank: #fff;
+  --border: #000;
+  --text: #e6e6e6;
+  --mtext: #000;
+  --ring: #fff;
+  --ring-offset: #000;
+
+  --shadow: var(--box-shadow-x) var(--box-shadow-y) 0px 0px var(--border);
+}
+
+h1 {
+  @apply text-2xl font-heading font-bold sm:text-4xl;
+}
+
+h2 {
+  @apply text-xl font-heading font-bold sm:text-2xl;
+}
+
+h3 {
+  @apply text-lg font-heading font-bold sm:text-xl;
+}
+
+h4 {
+  @apply text-base font-heading font-bold sm:text-lg;
+}
+
+h5 {
+  @apply text-sm font-heading font-bold sm:text-base;
+}
+
+h6 {
+  @apply text-xs font-heading font-bold sm:text-sm;
+}
+
+p {
+  @apply text-base font-base;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+a {
+
+  &:last-child {
+    @apply text-xl font-heading sm:text-xl underline;
+  }
+}
