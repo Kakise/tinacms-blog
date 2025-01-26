@@ -3,7 +3,44 @@ title: 'Hello, World!!'
 date: 2025-01-04T23:00:00.000Z
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ultricies quis mi sed scelerisque. Suspendisse eget lacinia dolor. Donec porta id lacus sed consectetur. Suspendisse potenti. Duis elit velit, vestibulum vitae libero nec, ultrices eleifend elit. Nullam et sollicitudin mauris. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In ligula orci, elementum a tincidunt in, tempus eu lectus. Etiam eget nisi felis. Mauris egestas molestie sem quis varius. Etiam quis enim luctus, feugiat ante at, facilisis velit. Aliquam erat volutpat.
+`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ultricies quis mi sed scelerisque. Suspendisse eget lacinia dolor. Donec porta id lacus sed consectetur. Suspendisse potenti. Duis elit velit, vestibulum vitae libero nec, ultrices eleifend elit. Nullam et sollicitudin mauris. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In ligula orci, elementum a tincidunt in, tempus eu lectus. Etiam eget nisi felis. Mauris egestas molestie sem quis varius. Etiam quis enim luctus, feugiat ante at, facilisis velit. Aliquam erat volutpat.`
+
+```mermaid
+%% This won't render without implementing a rendering engine (e.g. mermaid on npm)
+flowchart TD
+    id1(this is an example flow diagram) 
+    --> id2(modify me to see changes!)
+    id2 
+    --> id3(Click the top button to preview the changes)
+    --> id4(Learn about mermaid diagrams - mermaid.js.org)
+```
+
+| dz | zd |
+| -- | -- |
+| dz | dz |
+
+```javascript
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
+  return (
+    <ViewTransitions>
+      <html lang="en">
+        <Analytics />
+        <SpeedInsights />
+        <body className={montserrat.className}>
+          <Nav />
+          <div className="text-text dark:text-darkText mx-auto w-[750px] max-w-full px-5 pb-10 pt-28">
+            {children}
+          </div>
+        </body>
+      </html>
+    </ViewTransitions>
+  )
+}
+```
 
 Phasellus sed velit porta, rhoncus nulla vel, aliquam tortor. Maecenas eu varius turpis, nec ullamcorper sem. Quisque sit amet luctus risus. Integer euismod tortor metus, nec tincidunt sem pulvinar nec. Morbi hendrerit nisi nulla, nec rhoncus nisl consectetur vitae. Phasellus convallis rhoncus arcu, vel auctor nulla. Duis nec mi dignissim, dictum orci eget, maximus ante.
 
