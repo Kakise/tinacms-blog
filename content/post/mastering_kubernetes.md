@@ -255,10 +255,10 @@ Kubernetes implements a flat network model where:
 
 ```mermaid
 graph LR
-A[Client] --&gt; B(Ingress Controller)
-B --&gt;|Routing Rules| C[Service]
-C --&gt; D[Pod]
-C --&gt; E[Pod]
+A[Client] --> B(Ingress Controller)
+B -->|Routing Rules| C[Service]
+C --> D[Pod]
+C --> E[Pod]
 ```
 
 *Traffic flow through Kubernetes network components*
