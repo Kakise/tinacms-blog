@@ -6,6 +6,7 @@ on:
     branches: # Specify your branches here
       - main # The 'main' branch
       - 'releases/*' # The release branches
+
 jobs:
   qodana:
     runs-on: ubuntu-latest
@@ -21,8 +22,7 @@ jobs:
       - name: 'Qodana Scan'
         uses: JetBrains/qodana-action@v2025.2
         with:
-          args: |
-            --linter,qodana-js,
-            --within-docker,false
+          pr-mode: false
         env:
-          QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
+          QODANA_TOKEN: ${{ secrets.QODANA_TOKEN_1845669528 }}
+          QODANA_ENDPOINT: 'https://qodana.cloud'
