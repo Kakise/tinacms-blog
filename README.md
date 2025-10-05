@@ -46,7 +46,6 @@ You can check out [Tina Github repository](https://github.com/tinacms/tinacms) -
 
 ## [Deploy on Vercel](https://tina.io/guides/tina-cloud/add-tinacms-to-existing-site/deployment/)
 
-
 ## Static export and FTP deploy
 
 - Build the static site locally:
@@ -66,6 +65,7 @@ This will generate a static site in the `out/` directory (index.html, assets, JS
 A workflow is included at `.github/workflows/gh-pages.yml` which builds the static site and publishes it to a `gh-pages` branch on every push to `main` (and on manual dispatch).
 
 Required repository secrets for Tina CMS content fetching at build time:
+
 - `NEXT_PUBLIC_TINA_CLIENT_ID`
 - `TINA_TOKEN`
 - `NEXT_PUBLIC_TINA_BRANCH` (optional, defaults to `main`)

@@ -7,7 +7,7 @@ export default function PostList(props: any) {
   return (
     <>
       {!props.home && (
-        <h1 className="text-2xl font-heading sm:text-4xl">Posts</h1>
+        <h1 className="font-heading text-2xl sm:text-4xl">Posts</h1>
       )}
       <br />
       <div>
@@ -15,7 +15,7 @@ export default function PostList(props: any) {
           <div key={post.node.id}>
             <Link
               href={`/posts/${post.node._sys.filename}`}
-              className="text-xl font-heading underline sm:text-xl"
+              className="font-heading text-xl underline sm:text-xl"
             >
               {post.node.title}
             </Link>

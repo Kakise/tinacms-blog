@@ -18,3 +18,7 @@ include:
   - name: ReassignedToPlainText
   - name: RedundantSuppression
   - name: TodoComment
+exclude:
+  - name: All
+    paths:
+      - tina/tina-lock.json

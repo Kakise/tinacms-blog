@@ -25,10 +25,10 @@ const config: Config = {
         secondaryBlack: '#212121',
       },
       borderRadius: {
-        base: '5px'
+        base: '5px',
       },
       boxShadow: {
-        shadow: 'var(--shadow)'
+        shadow: 'var(--shadow)',
       },
       translate: {
         boxShadowX: '4px',

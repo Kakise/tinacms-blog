@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
-import mermaid from "mermaid";
+import React, { useEffect } from 'react'
+import mermaid from 'mermaid'
 
 mermaid.initialize({
   startOnLoad: true,
-  theme: "default",
-  securityLevel: "loose",
+  theme: 'default',
+  securityLevel: 'loose',
   themeCSS: `
     g.classGroup rect {
       fill: #282a36;
@@ -50,17 +50,19 @@ mermaid.initialize({
       stroke: #f8f8f2;
       stroke-width: 1;
     }`,
-  fontFamily: "Fira Code"
-});
+  fontFamily: 'Fira Code',
+})
 
 const Mermaid = ({ children }: { children: React.ReactNode }) => {
-    useEffect(() => {
-        mermaid.contentLoaded();
-    }, []);
+  useEffect(() => {
+    mermaid.contentLoaded()
+  }, [])
 
-    return <div className="flex justify-center">
-        <div className="mermaid">{children}</div>
-    </div>;
+  return (
+    <div className="flex justify-center">
+      <div className="mermaid">{children}</div>
+    </div>
+  )
 }
 
-export {Mermaid}
+export { Mermaid }

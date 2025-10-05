@@ -11,10 +11,10 @@ Kubernetes has revolutionized container orchestration, enabling organizations to
 
 While Docker Compose simplifies local container management, Kubernetes introduces enterprise-grade orchestration capabilities. Unlike Compose's static single-node approach, Kubernetes:
 
-* **Automates horizontal scaling** through ReplicaSets that maintain desired pod counts
-* **Enforces resource quotas** via Quality of Service (QoS) classes (Guaranteed, Burstable, BestEffort) preventing resource starvation
-* **Self-heals applications** by automatically replacing unhealthy pods
-* **Decouples networking** through Services that abstract pod IPs with stable endpoints
+- **Automates horizontal scaling** through ReplicaSets that maintain desired pod counts
+- **Enforces resource quotas** via Quality of Service (QoS) classes (Guaranteed, Burstable, BestEffort) preventing resource starvation
+- **Self-heals applications** by automatically replacing unhealthy pods
+- **Decouples networking** through Services that abstract pod IPs with stable endpoints
 
 ```yaml
 # Docker Compose vs Kubernetes equivalent
@@ -23,7 +23,7 @@ services:
   web:
     image: nginx:alpine
     ports:
-      - "80:80"
+      - '80:80'
 
 # Kubernetes Deployment + Service
 apiVersion: apps/v1
@@ -41,10 +41,10 @@ spec:
         app: web
     spec:
       containers:
-      - name: nginx
-        image: nginx:alpine
-        ports:
-        - containerPort: 80
+        - name: nginx
+          image: nginx:alpine
+          ports:
+            - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
@@ -67,7 +67,7 @@ This declarative approach enables zero-downtime updates and cross-cloud portabil
 ### Control Plane: The Orchestration Brain
 
 Kubernetes Architecture
-*Kubernetes master-worker architecture (Source: Kubernetes.io)*
+_Kubernetes master-worker architecture (Source: Kubernetes.io)_
 
 The control plane comprises:
 
@@ -81,9 +81,9 @@ The control plane comprises:
 
 Worker nodes execute workloads using:
 
-* **kubelet**: Pod lifecycle manager
-* **kube-proxy**: Network rules for Service IPs
-* **Container Runtime**: Docker, containerd, or CRI-O
+- **kubelet**: Pod lifecycle manager
+- **kube-proxy**: Network rules for Service IPs
+- **Container Runtime**: Docker, containerd, or CRI-O
 
 ## Hands-On Cluster Setup
 
@@ -135,7 +135,7 @@ kind: StatefulSet
 metadata:
   name: mysql
 spec:
-  serviceName: "mysql"
+  serviceName: 'mysql'
   replicas: 1
   selector:
     matchLabels:
@@ -146,16 +146,16 @@ spec:
         app: mysql
     spec:
       containers:
-      - name: mysql
-        image: mysql:5.7
-        env:
-        - name: MYSQL_ROOT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mysql-secrets
-              key: root_password
-        ports:
-        - containerPort: 3306
+        - name: mysql
+          image: mysql:5.7
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secrets
+                  key: root_password
+          ports:
+            - containerPort: 3306
 ---
 # wordpress-deployment.yaml
 apiVersion: apps/v1
@@ -173,20 +173,20 @@ spec:
         app: wordpress
     spec:
       containers:
-      - name: wordpress
-        image: wordpress:php8.0-apache
-        env:
-        - name: WORDPRESS_DB_HOST
-          value: mysql
-        - name: WORDPRESS_DB_USER
-          value: root
-        - name: WORDPRESS_DB_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: mysql-secrets
-              key: root_password
-        ports:
-        - containerPort: 80
+        - name: wordpress
+          image: wordpress:php8.0-apache
+          env:
+            - name: WORDPRESS_DB_HOST
+              value: mysql
+            - name: WORDPRESS_DB_USER
+              value: root
+            - name: WORDPRESS_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secrets
+                  key: root_password
+          ports:
+            - containerPort: 80
 ---
 # wordpress-service.yaml
 apiVersion: v1
@@ -215,20 +215,20 @@ kind: Ingress
 metadata:
   name: my-app
   annotations:
-    nginx.ingress.kubernetes.io/canary: "true"
-    nginx.ingress.kubernetes.io/canary-weight: "10"
+    nginx.ingress.kubernetes.io/canary: 'true'
+    nginx.ingress.kubernetes.io/canary-weight: '10'
 spec:
   rules:
-  - host: app.example.com
-    http:
-      paths:
-      - backend:
-          service:
-            name: my-app-v2
-            port:
-              number: 80
-        path: /
-        pathType: Prefix
+    - host: app.example.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: my-app-v2
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
 ```
 
 Gradually shift traffic between versions using service mesh or ingress controllers.
@@ -261,7 +261,7 @@ C --> D[Pod]
 C --> E[Pod]
 ```
 
-*Traffic flow through Kubernetes network components*
+_Traffic flow through Kubernetes network components_
 
 Implement network policies for microsegmentation:
 
@@ -275,13 +275,13 @@ spec:
     matchLabels:
       role: frontend
   ingress:
-  - from:
-    - podSelector:
-        matchLabels:
-          role: backend
-    ports:
-    - protocol: TCP
-      port: 80
+    - from:
+        - podSelector:
+            matchLabels:
+              role: backend
+      ports:
+        - protocol: TCP
+          port: 80
 ```
 
 This restricts frontend pods to only receive traffic from backend pods on port 80.
@@ -297,9 +297,9 @@ helm install kube-prometheus prometheus-community/kube-prometheus-stack
 
 Monitor key metrics:
 
-* **Cluster**: Node CPU/Memory usage, Pod restarts
-* **Applications**: Request latency, error rates
-* **Control Plane**: etcd write latency, API server throughput
+- **Cluster**: Node CPU/Memory usage, Pod restarts
+- **Applications**: Request latency, error rates
+- **Control Plane**: etcd write latency, API server throughput
 
 ### Vertical Pod Autoscaler
 
@@ -310,11 +310,11 @@ metadata:
   name: my-app-vpa
 spec:
   targetRef:
-    apiVersion: "apps/v1"
+    apiVersion: 'apps/v1'
     kind: Deployment
     name: my-app
   updatePolicy:
-    updateMode: "Auto"
+    updateMode: 'Auto'
 ```
 
 VPA automatically adjusts CPU/memory requests based on usage patterns.
@@ -330,9 +330,9 @@ metadata:
   namespace: default
   name: pod-reader
 rules:
-- apiGroups: [""]
-  resources: ["pods"]
-  verbs: ["get", "watch", "list"]
+  - apiGroups: ['']
+    resources: ['pods']
+    verbs: ['get', 'watch', 'list']
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
@@ -340,9 +340,9 @@ metadata:
   name: read-pods
   namespace: default
 subjects:
-- kind: User
-  name: jane
-  apiGroup: rbac.authorization.k8s.io
+  - kind: User
+    name: jane
+    apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: Role
   name: pod-reader
@@ -361,7 +361,7 @@ securityContext:
   allowPrivilegeEscalation: false
   capabilities:
     drop:
-    - ALL
+      - ALL
   seccompProfile:
     type: RuntimeDefault
 ```
@@ -372,10 +372,10 @@ Adopt PSA (Pod Security Admission) to restrict privileged pods.
 
 Kubernetes has evolved beyond container orchestration into a platform for:
 
-* **Multi-cloud deployments** through consistent APIs across providers
-* **Edge computing** with lightweight distributions like k3s
-* **Machine learning workflows** via Kubeflow and TensorFlow Serving
-* **Serverless architectures** using Knative and OpenFaaS
+- **Multi-cloud deployments** through consistent APIs across providers
+- **Edge computing** with lightweight distributions like k3s
+- **Machine learning workflows** via Kubeflow and TensorFlow Serving
+- **Serverless architectures** using Knative and OpenFaaS
 
 As you scale, consider:
 
