@@ -7,13 +7,14 @@
   --overlay: rgba(0, 0, 0, 0.8);
   /* background color overlay for alert dialogs, modals, etc. */
 
-  --bg: #e3dff2;
+  /* Apply the dark scheme by default per request */
+  --bg: #24273a; /* background */
   --bw: #fff;
   /* white and secondary black e.g. utility class variant would be: bg-[#fff] dark:bg-[#212121] */
   --blank: #000;
   /* blank black and white */
   --border: #000;
-  --text: #000;
+  --text: #cad3f5; /* readable text on dark bg */
   --mtext: #000;
   /* text that is placed on background with main color e.g. text color of default button */
   --ring: #000;
@@ -30,6 +31,7 @@
   --shadow: var(--box-shadow-x) var(--box-shadow-y) 0px 0px var(--border);
 }
 
+/* Optional: retain a .dark override if theme switching is used elsewhere */
 .dark {
   --bg: #272733;
   --bw: #212121;
@@ -41,6 +43,25 @@
   --ring-offset: #000;
 
   --shadow: var(--box-shadow-x) var(--box-shadow-y) 0px 0px var(--border);
+}
+
+/* Global fallback styles (formerly inline in layout.tsx) */
+body {
+  background-color: #24273a;
+  color: #cad3f5;
+  font-family: 'Space Mono', monospace;
+  margin: 0;
+  padding: 20px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 h1 {
@@ -74,7 +95,6 @@ p {
 }
 
 a {
-
   &:last-child {
     @apply text-xl font-heading sm:text-xl underline;
   }
