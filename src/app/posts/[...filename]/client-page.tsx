@@ -2,11 +2,13 @@
 import { tinaField, useTina } from 'tinacms/dist/react'
 import type { PostQuery } from '../../../../tina/__generated__/types'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
+import type { Components } from 'tinacms/dist/rich-text'
 import { Codeblock } from '@/components/code-block'
 import { Mermaid } from '@/components/mermaid'
 import { FaCalendar } from 'react-icons/fa'
 import { format } from 'date-fns'
 import { TinaTable } from '@/components/table'
+import type { ReactNode } from 'react'
 
 interface ClientPageProps {
   query: string
@@ -16,17 +18,43 @@ interface ClientPageProps {
   data: PostQuery
 }
 
-const components = {
-  code_block: (props: any) => {
+interface CodeBlockProps {
+  lang: string
+  value: string
+}
+
+interface MermaidProps {
+  value: string
+}
+
+interface CodeProps {
+  children: ReactNode
+}
+
+interface TableProps {
+  children: ReactNode
+}
+
+const components: Components<{
+  code_block: CodeBlockProps
+  mermaid: MermaidProps
+  code: CodeProps
+  table: TableProps
+}> = {
+  code_block: (props) => {
+    // @ts-ignore
     return <Codeblock language={props.lang}>{props.value}</Codeblock>
   },
-  mermaid: (props: any) => {
+  mermaid: (props) => {
+    // @ts-ignore
     return <Mermaid>{props.value}</Mermaid>
   },
-  code: (props: any) => {
+  code: (props) => {
+    // @ts-ignore
     return <code className="bg-muted rounded-md p-1">{props.children}</code>
   },
-  table: (props: any) => {
+  table: (props) => {
+    // @ts-ignore
     return <TinaTable>{props.children}</TinaTable>
   },
 }

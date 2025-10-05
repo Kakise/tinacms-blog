@@ -9,7 +9,7 @@
     "build:static": "tinacms build && next build",
     "build-local": "tinacms build --local --skip-indexing --skip-cloud-checks && next build",
     "start": "tinacms build && next start",
-    "lint": "next lint && prettier --write ."
+    "lint": "eslint . && prettier --write ."
   },
   "pnpm": {
     "onlyBuiltDependencies": [
