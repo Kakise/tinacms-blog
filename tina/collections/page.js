@@ -1,7 +1,7 @@
 /**
  * @type {import('tinacms').Collection}
  */
-export default {
+const PageCollection = {
   label: "Page Content",
   name: "page",
   path: "content/page",
@@ -23,3 +23,5 @@ export default {
     },
   },
 };
+
+export default PageCollection;
