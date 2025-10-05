@@ -1,10 +1,11 @@
-import { FlatCompat } from '@eslint/eslintrc'
-
-const compat = new FlatCompat({
-  baseDirectory: import.meta.dirname,
-})
+import js from '@eslint/js';
+import nextPlugin from '@next/eslint-plugin-next';
+import reactHooksPlugin from 'eslint-plugin-react-hooks';
+import reactCompilerPlugin from 'eslint-plugin-react-compiler';
+import pluginQuery from '@tanstack/eslint-plugin-query';
 
 const eslintConfig = [
+  js.configs.recommended,
   {
     ignores: [
       'node_modules/**',
@@ -16,9 +17,28 @@ const eslintConfig = [
       'public/**',
     ],
   },
-  ...compat.config({
-    extends: ['next/core-web-vitals', 'next/typescript'],
-  }),
-]
+  {
+    files: ['**/*.{js,jsx,ts,tsx}'],
+    plugins: {
+      '@next/next': nextPlugin,
+      'react-hooks': reactHooksPlugin,
+    },
+    rules: {
+      ...nextPlugin.configs.recommended.rules,
+      ...nextPlugin.configs['core-web-vitals'].rules,
+      ...reactHooksPlugin.configs.recommended.rules,
+    },
+  },
+  ...pluginQuery.configs['flat/recommended'],
+  {
+    name: 'react-compiler/recommended',
+    plugins: {
+      'react-compiler': reactCompilerPlugin,
+    },
+    rules: {
+      'react-compiler/react-compiler': 'error',
+    },
+  },
+];
 
-export default eslintConfig
+export default eslintConfig;
