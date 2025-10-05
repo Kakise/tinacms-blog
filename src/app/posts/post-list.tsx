@@ -50,7 +50,8 @@ export default function PostList(props: PostListProps) {
             </Link>
             <p className="flex items-center gap-2">
               <FaCalendar />
-              {post.node.date && format(new Date(post.node.date), 'MMMM dd, yyyy')}
+              {post.node.date &&
+                format(new Date(post.node.date), 'MMMM dd, yyyy')}
             </p>
             <p>{truncate(post.node.body.children[0].children[0].text, 255)}</p>
           </div>

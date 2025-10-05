@@ -123,7 +123,7 @@ const TinaTable = ({ children }: { children: React.ReactNode }) => {
             React.isValidElement(children.props.children[0]) &&
             (
               children.props.children[0] as React.ReactElement
-            ).props.children.map((child: any, index: number) => (
+            ).props.children.map((child: React.ReactElement, index: number) => (
               <TableHead key={`header-${index}`}>
                 {child.props.content[0].children[0].text}
               </TableHead>
@@ -135,13 +135,15 @@ const TinaTable = ({ children }: { children: React.ReactNode }) => {
           React.isValidElement(children.props.children[0]) &&
           children.props.children
             .slice(1, childLen)
-            .map((row: any, rowIndex: number) => (
+            .map((row: React.ReactElement, rowIndex: number) => (
               <TableRow key={`row-${rowIndex}`}>
-                {row.props.children.map((cell: any, cellIndex: number) => (
-                  <TableCell key={`cell-${rowIndex}-${cellIndex}`}>
-                    {cell.props.content[0].children[0].text}
-                  </TableCell>
-                ))}
+                {row.props.children.map(
+                  (cell: React.ReactElement, cellIndex: number) => (
+                    <TableCell key={`cell-${rowIndex}-${cellIndex}`}>
+                      {cell.props.content[0].children[0].text}
+                    </TableCell>
+                  ),
+                )}
               </TableRow>
             ))}
       </TableBody>

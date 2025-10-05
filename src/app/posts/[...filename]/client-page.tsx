@@ -42,19 +42,19 @@ const components: Components<{
   table: TableProps
 }> = {
   code_block: (props) => {
-    // @ts-ignore
+    // @ts-expect-error The props are never undefined
     return <Codeblock language={props.lang}>{props.value}</Codeblock>
   },
   mermaid: (props) => {
-    // @ts-ignore
+    // @ts-expect-error The props are never undefined
     return <Mermaid>{props.value}</Mermaid>
   },
   code: (props) => {
-    // @ts-ignore
+    // @ts-expect-error The props are never undefined
     return <code className="bg-muted rounded-md p-1">{props.children}</code>
   },
   table: (props) => {
-    // @ts-ignore
+    // @ts-expect-error The props are never undefined
     return <TinaTable>{props.children}</TinaTable>
   },
 }
