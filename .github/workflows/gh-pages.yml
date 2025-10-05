@@ -12,6 +12,7 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    environment: Production
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,9 +33,9 @@ jobs:
 
       - name: Build and export static site
         env:
-          NEXT_PUBLIC_TINA_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_TINA_CLIENT_ID }}
+          TINA_CLIENT_ID: ${{ secrets.TINA_CLIENT_ID }}
           TINA_TOKEN: ${{ secrets.TINA_TOKEN }}
-          NEXT_PUBLIC_TINA_BRANCH: ${{ secrets.NEXT_PUBLIC_TINA_BRANCH || 'main' }}
+          TINA_SEARCH_TOKEN: ${{ secrets.TINA_SEARCH_TOKEN }}
         run: pnpm run build:static
 
       - name: Deploy to GitHub Pages
