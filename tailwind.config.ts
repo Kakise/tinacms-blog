@@ -40,6 +40,10 @@ const config: Config = {
         base: '500',
         heading: '700',
       },
+      fontFamily: {
+        heading: ['"Space Mono"', 'monospace'],
+        base: ['"Space Mono"', 'monospace'],
+      },
     },
   },
   plugins: [tailwindAnimate],

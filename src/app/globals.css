@@ -26,6 +26,8 @@
   --reverse-box-shadow-y: -4px;
   --base-font-weight: 500;
   --heading-font-weight: 700;
+  --font-base: 'Space Mono', monospace;
+  --font-heading: 'Space Mono', monospace;
 
   --shadow: var(--box-shadow-x) var(--box-shadow-y) 0px 0px var(--border);
 }
@@ -43,38 +45,105 @@
   --shadow: var(--box-shadow-x) var(--box-shadow-y) 0px 0px var(--border);
 }
 
+.font-base {
+  font-family: var(--font-base);
+  font-weight: var(--base-font-weight);
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+  font-weight: var(--heading-font-weight);
+}
+
 h1 {
-  @apply font-heading text-2xl font-bold sm:text-4xl;
+  font-family: var(--font-heading);
+  font-weight: var(--heading-font-weight);
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 h2 {
-  @apply font-heading text-xl font-bold sm:text-2xl;
+  font-family: var(--font-heading);
+  font-weight: var(--heading-font-weight);
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 
 h3 {
-  @apply font-heading text-lg font-bold sm:text-xl;
+  font-family: var(--font-heading);
+  font-weight: var(--heading-font-weight);
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 
 h4 {
-  @apply font-heading text-base font-bold sm:text-lg;
+  font-family: var(--font-heading);
+  font-weight: var(--heading-font-weight);
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 
 h5 {
-  @apply font-heading text-sm font-bold sm:text-base;
+  font-family: var(--font-heading);
+  font-weight: var(--heading-font-weight);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 h6 {
-  @apply font-heading text-xs font-bold sm:text-sm;
+  font-family: var(--font-heading);
+  font-weight: var(--heading-font-weight);
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+@media (min-width: 640px) {
+  h1 {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+
+  h4 {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+
+  h5 {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  h6 {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
 }
 
 p {
-  @apply font-base text-base;
+  font-family: var(--font-base);
+  font-weight: var(--base-font-weight);
+  font-size: 1rem;
+  line-height: 1.5rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
 
 a {
   &:last-child {
-    @apply font-heading text-xl underline sm:text-xl;
+    font-family: var(--font-heading);
+    font-weight: var(--heading-font-weight);
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    text-decoration-line: underline;
   }
 }
