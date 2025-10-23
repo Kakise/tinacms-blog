@@ -1,4 +1,3 @@
-'use client'
 import type {ReactNode} from "react";
 import {
   Components,
@@ -6,7 +5,7 @@ import {
   TinaMarkdownContent,
 } from 'tinacms/dist/rich-text'
 import {Codeblock} from "@/components/code-block";
-import {Mermaid} from "@/components/mermaid";
+import MermaidElement from "@/components/mermaid";
 
 type BaseComponents = {
     h1?: {
@@ -103,10 +102,9 @@ type BaseComponents = {
 
 const components: Components<BaseComponents> = {
     code_block: props => {
+        if (props?.lang == "mermaid")
+          return <MermaidElement value={props?.value}/>
         return <Codeblock language={props?.lang ?? "text"}>{props?.value ?? ""}</Codeblock>
-    },
-    mermaid: props => {
-        return <Mermaid>{props?.value}</Mermaid>
     },
     code: props =>  {
         return <code className="bg-muted rounded-md p-1">{props?.children}</code>
@@ -123,6 +121,5 @@ const components: Components<BaseComponents> = {
 }
 
 export default function MDXRender({content}: { content: TinaMarkdownContent }) {
-
     return <TinaMarkdown content={content} components={components} />
 }
