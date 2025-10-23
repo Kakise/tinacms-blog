@@ -33,7 +33,6 @@ export default function Nav() {
         <div className="flex w-full flex-wrap justify-center gap-3 sm:gap-4">
           {links.map((link) => {
             const isActive = path === link.path
-            console.log(path, link.path, isActive)
             return (
               <Link
                 key={link.path}
