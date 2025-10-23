@@ -38,24 +38,26 @@ export default function PostList(props: PostListProps) {
       {!props.home && (
         <h1 className="font-heading text-2xl sm:text-4xl">Posts</h1>
       )}
-      <br />
-      <div>
+      <div className="mt-8 grid gap-8">
         {(props.data.postConnection.edges ?? [])
           .filter((edge): edge is PostEdge & { node: PostNode } => !!edge?.node)
           .map((post) => (
-            <div key={post.node.id}>
+            <div
+              key={post.node.id}
+              className="border-border bg-bw shadow-[8px_8px_0_0_var(--shadow-color)] border-4 px-5 py-6 transition-transform hover:-translate-y-[2px]"
+            >
               <Link
                 href={`/posts/${post.node._sys.filename}`}
-                className="font-heading text-xl underline sm:text-xl"
+                className="font-heading text-xl uppercase tracking-[0.15rem] sm:text-2xl"
               >
                 {post.node.title ?? 'Untitled'}
               </Link>
-              <p className="flex items-center gap-2">
-                <FaCalendar />
+              <p className="mt-3 flex items-center gap-2 text-sm uppercase tracking-[0.2rem]">
+                <FaCalendar className="text-main" />
                 {post.node.date &&
                   format(new Date(post.node.date), 'MMMM dd, yyyy')}
               </p>
-              <p>
+              <p className="mt-4 text-base">
                 {truncate(
                   post.node.body?.children?.[0]?.children?.[0]?.text ?? '',
                   255,
