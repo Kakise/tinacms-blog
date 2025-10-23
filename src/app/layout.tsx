@@ -18,18 +18,16 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-      <html lang="en" className="dark">
+      <html lang="en">
         <body className={`${space_mono.className} bg-bg text-text`}>
           <ThemeProvider>
             <ViewTransitions>
-
             <div className="flex min-h-screen flex-col items-center px-5 pb-24 pt-14 sm:pt-20">
               <Nav />
               <br />
               {children}
             </div>
             </ViewTransitions>
-
           </ThemeProvider>
         </body>
       </html>
