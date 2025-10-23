@@ -27,11 +27,10 @@ export default async function Page({ params }: PageProps) {
       last: 5,
     })
     return (
-      <>
-        <ClientPage {...data} />
+      <ClientPage {...data}>
         <h2>Latest blog posts</h2>
         <PostList home={true} {...posts} />
-      </>
+      </ClientPage>
     )
   }
 }

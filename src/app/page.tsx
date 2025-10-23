@@ -15,10 +15,9 @@ export default async function IndexPage() {
   })
 
   return (
-    <>
-      <ClientPage {...data} />
+    <ClientPage {...data}>
       <h2>Latest blog posts</h2>
       <PostList home={true} {...posts} />
-    </>
+    </ClientPage>
   )
 }

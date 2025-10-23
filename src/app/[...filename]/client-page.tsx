@@ -1,14 +1,33 @@
 'use client'
-import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import { tinaField, useTina } from 'tinacms/dist/react'
 import type { PageQuery } from '../../../tina/__generated__/types'
+import MDXRender from '@/components/mdx-render'
+import { Card, CardContent } from '@/components/ui/card'
+import { ReactNode } from 'react'
 
-interface ClientPageProps {
+
+
+interface ClientPageSkeletonProps {
+  children?: ReactNode
+}
+
+interface ClientPageProps{
   query: string
   variables: {
     relativePath: string
   }
   data: { page: PageQuery['page'] }
+  children?: ReactNode
+}
+
+export function ClientPageSkeleton(props: ClientPageSkeletonProps) {
+  return (
+    <Card className="w-full max-w-4xl">
+      <CardContent>
+        {props.children}
+      </CardContent>
+    </Card>
+  )
 }
 
 export default function ClientPage(props: ClientPageProps) {
@@ -21,8 +40,11 @@ export default function ClientPage(props: ClientPageProps) {
 
   const content = data.page.body
   return (
-    <div data-tina-field={tinaField(data.page, 'body')}>
-      <TinaMarkdown content={content} />
-    </div>
+    <ClientPageSkeleton>
+      <div data-tina-field={tinaField(data.page, 'body')}>
+        <MDXRender content={content} />
+      </div>
+      {props.children}
+    </ClientPageSkeleton>
   )
 }

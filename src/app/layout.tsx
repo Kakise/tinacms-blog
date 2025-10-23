@@ -39,11 +39,8 @@ export default function RootLayout({
           <ThemeProvider>
             <div className="flex min-h-screen flex-col items-center px-5 pb-24 pt-14 sm:pt-20">
               <Nav />
-              <main className="mt-14 w-full max-w-[680px] sm:mt-16">
-                <div className="border-border bg-bw text-text shadow-[10px_10px_0_0_var(--shadow-color)] border-4 px-6 py-8 sm:px-10 sm:py-12">
-                  {children}
-                </div>
-              </main>
+              <br />
+              {children}
             </div>
           </ThemeProvider>
         </body>

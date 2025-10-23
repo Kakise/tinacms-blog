@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import truncate from 'truncate'
 import { format } from 'date-fns'
-import { FaCalendar } from 'react-icons/fa'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Calendar } from 'lucide-react'
 
 interface PostNode {
   id: string
@@ -42,28 +43,32 @@ export default function PostList(props: PostListProps) {
         {(props.data.postConnection.edges ?? [])
           .filter((edge): edge is PostEdge & { node: PostNode } => !!edge?.node)
           .map((post) => (
-            <div
-              key={post.node.id}
-              className="border-border bg-bw shadow-[8px_8px_0_0_var(--shadow-color)] border-4 px-5 py-6 transition-transform hover:-translate-y-[2px]"
-            >
-              <Link
-                href={`/posts/${post.node._sys.filename}`}
-                className="font-heading text-xl uppercase tracking-[0.15rem] sm:text-2xl"
-              >
-                {post.node.title ?? 'Untitled'}
-              </Link>
-              <p className="mt-3 flex items-center gap-2 text-sm uppercase tracking-[0.2rem]">
-                <FaCalendar className="text-main" />
-                {post.node.date &&
-                  format(new Date(post.node.date), 'MMMM dd, yyyy')}
-              </p>
-              <p className="mt-4 text-base">
+            <Card className="w-full max-w-4xl transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none" key={post.node.id}>
+              <CardHeader>
+                <CardTitle>
+                  <Link
+                    href={`/posts/${post.node._sys.filename}`}
+                    className="font-heading text-xl uppercase tracking-[0.15rem] sm:text-2xl"
+                  >
+                    {post.node.title ?? 'Untitled'}
+                  </Link>
+                </CardTitle>
+                <CardDescription>
+                  <span className="flex items-center gap-2 text-xl">
+                    <Calendar />
+                    {post.node.date
+                      ? format(new Date(post.node.date), 'MMMM dd, yyyy')
+                      : 'No date'}
+                  </span>
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
                 {truncate(
                   post.node.body?.children?.[0]?.children?.[0]?.text ?? '',
                   255,
                 )}
-              </p>
-            </div>
+              </CardContent>
+            </Card>
           ))}
       </div>
     </>
