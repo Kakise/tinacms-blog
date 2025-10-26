@@ -1,37 +1,24 @@
-import { useRef, useEffect, useState } from 'react';
-import mermaid from 'mermaid';
+'use client'
+import {useEffect, useRef, useState} from 'react'
 
-mermaid.initialize({
-  startOnLoad: false,
-});
-
-export default function MermaidElement({ value }: { value: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [svg, setSvg] = useState<string>('');
+export default function MermaidElement({value}: {value: string}) {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [svg, setSvg] = useState<string>('')
 
   useEffect(() => {
-    const renderDiagram = async () => {
-      if (ref.current && value) {
-        try {
-          const id = `mermaid-${Math.random().toString(36).substring(2, 9)}`;
-          const { svg } = await mermaid.render(id, value);
-          setSvg(svg);
-        } catch (error) {
-          console.error('Mermaid rendering error:', error);
-        }
-      }
-    };
+    let mounted = true
+    async function render() {
+      const mermaid = await import('mermaid')  // chargement côté client
+      mermaid.default.initialize({startOnLoad: false})
+      const id = `m-${Math.random().toString(36).slice(2)}`
+      const {svg} = await mermaid.default.render(id, value)
+      if (mounted) setSvg(svg)
+    }
+    render().catch((err) => console.error('Mermaid rendering error', err))
+    return () => {
+      mounted = false
+    }
+  }, [value])
 
-    renderDiagram().finally(() => {
-      console.log("Finished mermaid rendering");
-    });
-  }, [value]);
-
-  return (
-    <div
-      ref={ref}
-      className="mermaid"
-      dangerouslySetInnerHTML={{ __html: svg }}
-    />
-  );
+  return <div ref={containerRef} dangerouslySetInnerHTML={{__html: svg}} />
 }

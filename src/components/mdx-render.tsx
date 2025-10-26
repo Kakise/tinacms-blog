@@ -106,6 +106,10 @@ const components: Components<BaseComponents> = {
           return <MermaidElement value={props?.value}/>
         return <Codeblock language={props?.lang ?? "text"}>{props?.value ?? ""}</Codeblock>
     },
+    mermaid: props => {
+        if (!props?.value) return <></>
+        return <MermaidElement value={props?.value}/>
+    },
     code: props =>  {
         return <code className="bg-muted rounded-md p-1">{props?.children}</code>
     },
