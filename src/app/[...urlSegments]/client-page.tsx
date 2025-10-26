@@ -1,6 +1,6 @@
 'use client'
 import { tinaField, useTina } from 'tinacms/dist/react'
-import type { PageQuery } from '../../../tina/__generated__/types'
+import type { PageQuery } from '@tina/types'
 import MDXRender from '@/components/mdx-render'
 import { Card, CardContent } from '@/components/ui/card'
 import { ReactNode } from 'react'
