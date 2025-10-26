@@ -1,11 +1,10 @@
-/**
- * @type {import('tinacms').Collection}
- */
-// eslint-disable-next-line import/no-anonymous-default-export
-export default {
+import type { Collection } from 'tinacms';
+
+const Post: Collection = {
   label: 'Blog Posts',
   name: 'post',
   path: 'content/post',
+  format: 'mdx',
   fields: [
     {
       type: 'string',
@@ -30,3 +29,5 @@ export default {
     },
   },
 }
+
+export default Post;
