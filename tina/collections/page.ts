@@ -1,7 +1,6 @@
-/**
- * @type {import('tinacms').Collection}
- */
-const PageCollection = {
+import type { Collection } from 'tinacms'
+
+const PageCollection: Collection = {
   label: 'Page Content',
   name: 'page',
   path: 'content/page',
