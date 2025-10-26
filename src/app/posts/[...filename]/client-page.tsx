@@ -1,6 +1,6 @@
 'use client'
 import { tinaField, useTina } from 'tinacms/dist/react'
-import type { PostQuery } from '../../../../tina/__generated__/types'
+import type { PostQuery } from '@tina/types'
 import { format } from 'date-fns'
 import {
   Card,

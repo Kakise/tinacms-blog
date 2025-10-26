@@ -1,6 +1,6 @@
 import Post from './client-page'
-import client from '../../../../tina/__generated__/client'
-import { PageProps } from '../../../../.next/types/app/posts/[...filename]/page'
+import client from '@tina/client'
+import { PageProps } from '@.next/app/posts/[...filename]/page'
 
 export async function generateStaticParams() {
   const pages = await client.queries.postConnection()
