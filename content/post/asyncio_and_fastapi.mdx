@@ -9,6 +9,23 @@ Async programming has become indispensable for backend developers looking to bui
 
 Synchronous Python is simple: every operation waits for the previous to finish. Great for small scripts, but a deal-breaker for APIs handling thousands of requests. Asyncio leverages non-blocking IO using the event loop, unlocking real concurrency with minimal context-switching overhead.
 
+```mermaid
+flowchart TD
+    A[Start] --> B[Create Coroutine Task]
+    B --> C[Event Loop Runs]
+    C --> D{Await?}
+    D -- Yes --> E[Yield Control]
+    E --> F[Other Coroutines Execute]
+    F --> G[IO or Await Complete]
+    G --> H[Resume Coroutine]
+    D -- No --> H
+    H --> I{Task Finished?}
+    I -- No --> C
+    I -- Yes --> J[Task Returns Result]
+    J --> K[End]
+
+```
+
 **Key architecture features:**
 
 * Event loop schedules coroutines efficiently
@@ -36,6 +53,20 @@ Asyncio doesn’t “beat” the GIL—Python’s global interpreter lock—but 
 ## FastAPI: Async by Design
 
 FastAPI sets itself apart by treating async as the default. Every endpoint can be declared using `async def`, with the framework spinning up your event loop and managing request concurrency.
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant FastAPI
+    participant IO
+    Client->>FastAPI: Send request
+    FastAPI->>FastAPI: Call async endpoint
+    FastAPI->>IO: Await IO (DB/API/File)
+    Note right of FastAPI: Handles other requests
+    IO-->>FastAPI: IO completes
+    FastAPI->>Client: Return response
+
+```
 
 **Minimal async route:**
 
