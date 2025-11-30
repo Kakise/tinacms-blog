@@ -14,15 +14,15 @@ export default function Nav() {
       text: 'Home',
     },
     {
-      path: '/posts/',
+      path: '/posts',
       text: 'Blog',
     },
     {
-      path: '/about/',
+      path: '/about',
       text: 'About',
     },
     {
-      path: '/work/',
+      path: '/work',
       text: 'Work',
     },
   ]
@@ -31,6 +31,7 @@ export default function Nav() {
       <div className="flex w-full max-w-[680px] flex-col items-center gap-4">
         <div className="flex w-full flex-wrap justify-center gap-3 sm:gap-4">
           {links.map((link) => {
+            console.log(link.path, path)
             const isActive = path === link.path
             return (
               <Link
